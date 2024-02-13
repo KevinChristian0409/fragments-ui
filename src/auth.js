@@ -31,7 +31,7 @@ Amplify.configure({
       redirectSignIn: process.env.OAUTH_SIGN_IN_REDIRECT_URL,
       redirectSignOut: process.env.OAUTH_SIGN_OUT_REDIRECT_URL,
 
-      // We're using the Access Code Grant flow (i.e., `code`)
+      // We're using the Access Code Grant flow (i.e., code)
       responseType: "code",
     },
   },
@@ -68,13 +68,13 @@ async function getUser() {
       // Include a simple method to generate headers with our Authorization info
       authorizationHeaders: (type = "application/json") => {
         const headers = { "Content-Type": type };
-        headers["Authorization"] = `Bearer ${idToken}`;
+        headers["Authorization"] = Bearer`${idToken}`;
         return headers;
       },
     };
   } catch (err) {
     console.log(err);
-    // Unable to get user, return `null` instead
+    // Unable to get user, return null instead
     return null;
   }
 }
