@@ -27,15 +27,16 @@ export async function saveUserFragment(user, text) {
     const res = await fetch(`${apiUrl}/v1/fragments`, {
       method: "POST",
       headers: {
-        Authorization: Bearer`${user.idToken}`,
+        Authorization: `Bearer ${user.idToken}`,
+        // 'Content-Type': 'application/json' // Specify the content type
       },
       body: JSON.stringify({ text }), // Send the text in the request body
     });
     if (!res.ok) {
-      throw new Error(`${res.status}``${res.statusText}`);
+      throw new Error(`${res.status} ${res.statusText}`);
     }
     const data = await res.json();
-    console.log("Fragment has been successfully created", { data });
+    console.log("Fragment has been successfully created", { data }); // Log the response data
   } catch (error) {
     console.error("Error saving fragment", error);
     throw error;

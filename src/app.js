@@ -50,12 +50,6 @@ async function init() {
     saveUserFragment(user, fragmentText.value);
     createInfo.innerHTML = "Fragment has been created";
   };
-
-  // getFragDataByID.onclick = async () =>{
-  //   var res = await getFragmentDataById(user, getDataByID.value);
-  //   console.log(res);
-  //   frag_content.innerHTML = res;
-  // }
 }
 
 // Wait for the DOM to be ready, then start the app
