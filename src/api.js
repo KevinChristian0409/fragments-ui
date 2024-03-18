@@ -1,7 +1,7 @@
 // src/api.js
 
 // fragments microservice API to use, defaults to localhost:8080 if not set in env
-const apiUrl = "http://localhost:8080";
+const apiUrl = process.env.API_URL || "http://localhost:8080";
 
 export async function getUserFragments(user, expand = 0) {
   console.log("Requesting user fragments data...");
