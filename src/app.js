@@ -1,12 +1,7 @@
 // src/app.js
 
 import { Auth, getUser } from "./auth";
-import {
-  getUserFragments,
-  saveUserFragment,
-  getFragmentDataById,
-  getFragmentMetaDataById,
-} from "./api";
+import { getUserFragments, saveUserFragment } from "./api";
 
 async function init() {
   // Get our UI elements
@@ -16,12 +11,7 @@ async function init() {
   const createFragment = document.querySelector("#create-fragment");
   const fragmentText = document.querySelector("#text-input-title");
   const createInfo = document.querySelector("#createInfo");
-  const checkOldFragmentBtn = document.querySelector("#checkOldFragmentBtn");
   const fragType = document.querySelector("#Type");
-  const getFragDataByID = document.querySelector("#getFragDataByID");
-  const getDataByID = document.querySelector("#getDataByID");
-  const frag_content = document.querySelector("#frag_byID");
-  const getFragMeta = document.querySelector("#getFragMeta");
 
   // Wire up event handlers to deal with login and logout.
   loginBtn.onclick = () => {
@@ -43,12 +33,6 @@ async function init() {
     return;
   }
 
-  checkOldFragmentBtn.onclick = async () => {
-    var res = await getUserFragments(user, 1);
-    console.log(res);
-    document.querySelector("#oldFragSpan").innerHTML = JSON.stringify(res);
-  };
-
   createFragment.onclick = () => {
     if (
       fragType.options[fragType.selectedIndex].value == "text/plain" ||
@@ -63,18 +47,6 @@ async function init() {
       );
       createInfo.innerHTML = "Fragment has been created";
     }
-  };
-
-  getFragDataByID.onclick = async () => {
-    var res = await getFragmentDataById(user, getDataByID.value);
-    console.log(res);
-    frag_content.innerHTML = res;
-  };
-
-  getFragMeta.onclick = async () => {
-    var res = await getFragmentMetaDataById(user, getDataByID.value);
-    console.log(res);
-    frag_content.innerHTML = JSON.stringify(res);
   };
 
   // Do an authenticated request to the fragments API server and log the result

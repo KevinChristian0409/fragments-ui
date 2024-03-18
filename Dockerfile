@@ -60,7 +60,7 @@ FROM nginx:1.24.0-alpine@sha256:83bcfc6137b41df04b0091ffa4edcaef3f30e48d0ebc1d92
 #Copy the build
 COPY --from=build /app/dist/ /usr/share/nginx/html
 
-# We run our service on port 8080
+# We run our service on port 80
 EXPOSE 80
 
 # Added healthcheck

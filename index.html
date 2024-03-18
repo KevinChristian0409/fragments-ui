@@ -20,33 +20,20 @@
     <section id="fragment">
       <h4>Create a new Fragment</h4>
       <p>Enter the text below to create a new fragment</p>
-      <input type="input" id="text-input-title" name="Fragment"><br><br>
-      <label>Select the Type of Fragment:</label> 
-      <select id="Type"> 
-        <option value="text/plain">text/plain</option> 
-        <option value="text/plain; charset=utf-8"> text/plain; charset=utf-8 </option> 
-        <option value="text/markdown">text/markdown</option> 
-        <option value="text/html">text/html</option> 
+      <input type="input" id="text-input-title" name="Fragment" /><br /><br />
+      <label>Select the Type of Fragment:</label>
+      <select id="Type">
+        <option value="text/plain">text/plain</option>
+        <option value="text/plain; charset=utf-8">
+          text/plain; charset=utf-8
+        </option>
+        <option value="text/markdown">text/markdown</option>
+        <option value="text/html">text/html</option>
         <option value="application/json">application/json</option>
       </select>
-      <br><br>
-      <Button id="create-fragment">Create Fragment</Button><br />
-      <span id="createInfo" name="createInfo" style="font-weight: bold;"></span>
-      <br><br>
-      <span style="font-weight: bolder; font-size:x-large">Get Data By ID</span>
-      <label for="getDataByID" style="font-weight: bold;">Get the Fragment by passing its ID below:</label>
-      <input type="text" id="getDataByID" name="getDataByID" /><br /><br />
-      <button id="getFragDataByID">Get Fragment Data</button>
-      <button id="getFragMeta">Get Fragment Metadata Info</button>
-      <br><br>
-      <span style="font-weight: bolder; font-size:x-large">The Data is below:</span>
-      <p id="frag_byID" name="frag_byID"></p>
-      <br><br>
-    <section id="checkOldFragment">   
-      <h2>View existing fragments</h2>      
-      <button id="checkOldFragmentBtn">Get Fragments</button>      
-      <br><br>
-      <span id="oldFragSpan"></span>
+      <br /><br />
+      <button id="create-fragment">Create Fragment</button><br />
+      <span id="createInfo" name="createInfo" style="font-weight: bold"></span>
     </section>
   </body>
 </html>
