@@ -1,7 +1,15 @@
 // src/app.js
 
 import { Auth, getUser } from "./auth";
-import { getUserFragments, saveUserFragment } from "./api";
+import {
+  getUserFragments,
+  saveUserFragment,
+  getFragmentDataById,
+  getFragmentMetaDataById,
+  deleteFragmentById,
+  putFragment,
+  convertFragment,
+} from "./api";
 
 async function init() {
   // Get our UI elements
@@ -12,6 +20,63 @@ async function init() {
   const fragmentText = document.querySelector("#text-input-title");
   const createInfo = document.querySelector("#createInfo");
   const fragType = document.querySelector("#Type");
+  const checkOldFragmentBtn = document.querySelector("#checkOldFragmentBtn");
+  const uploadedImg = document.querySelector("#image");
+  const getFragDataByID = document.querySelector("#getFragDataByID");
+  const getDataByID = document.querySelector("#getDataByID");
+  const frag_content = document.querySelector("#frag_byID");
+  const getFragMeta = document.querySelector("#getFragMeta");
+  const deleteFragment = document.querySelector("#deleteFragBtn");
+  const deleteFragId = document.querySelector("#id_delete");
+  const deleteInfo = document.querySelector("#deleteInfo");
+  const putFragmentBtn = document.querySelector("#updateDataBtn");
+  const putID = document.querySelector("#IdUpdate");
+  const putContent = document.querySelector("#UpdateFragData");
+  const updateInfo = document.querySelector("#updateInfo");
+  const updateType = document.querySelector("#updateType");
+  const existFrag = document.querySelector("#existFrag");
+  const convertBtn = document.querySelector("#convertbtn");
+  const convertFrag = document.querySelector("#convertFrag");
+  const convertOption = document.querySelector("#convert_option");
+  const convertFragmentID = document.querySelector("#convert_fragmentId");
+
+  checkOldFragmentBtn.onclick = () => {
+    existFrag.innerHTML = "";
+    getUserFragments(user, 1)
+      .then(function (userFragments) {
+        // Check if userFragments is an array or object and convert it to HTML fragments
+        if (Array.isArray(userFragments)) {
+          // Convert array to HTML fragments
+          userFragments.forEach(function (fragment) {
+            if (typeof fragment === "object") {
+              // Convert object to string
+              fragment = JSON.stringify(fragment);
+            }
+            existFrag.innerHTML += fragment + "<br>" + "<br>";
+          });
+        } else if (typeof userFragments === "object") {
+          // Convert object to HTML fragments
+          for (var key in userFragments) {
+            var fragment = userFragments[key];
+            if (typeof fragment === "object") {
+              // Convert object to string
+              fragment = JSON.stringify(fragment);
+            }
+            existFrag.innerHTML += fragment + "<br>" + "<br>";
+          }
+        } else if (userFragments) {
+          // If userFragments is a single fragment (string), append it directly
+          existFrag.innerHTML += userFragments + "<br>" + "<br>";
+        } else {
+          // If no fragments available, display a message
+          existFrag.innerHTML = "No fragments available for user";
+        }
+      })
+      .catch(function (error) {
+        // Handle any errors that occurred during fetching fragments
+        console.error("Error fetching user fragments:", error);
+      });
+  };
 
   // Wire up event handlers to deal with login and logout.
   loginBtn.onclick = () => {
@@ -46,7 +111,53 @@ async function init() {
         fragmentText.value
       );
       createInfo.innerHTML = "Fragment has been created";
+    } else {
+      saveUserFragment(
+        user,
+        fragType.options[fragType.selectedIndex].value,
+        uploadedImg.files
+      );
+      createInfo.innerHTML = "Fragment has been created";
     }
+  };
+
+  convertBtn.onclick = async () => {
+    var res = await convertFragment(
+      user,
+      convertFragmentID.value,
+      convertOption.options[convertOption.selectedIndex].value
+    );
+    console.log(res);
+    convertFrag.innerHTML = res;
+  };
+
+  getFragDataByID.onclick = async () => {
+    var res = await getFragmentDataById(user, getDataByID.value);
+    console.log(res);
+    frag_content.innerHTML = res;
+  };
+
+  getFragMeta.onclick = async () => {
+    var res = await getFragmentMetaDataById(user, getDataByID.value);
+    console.log(res);
+    frag_content.innerHTML = JSON.stringify(res);
+  };
+
+  deleteFragment.onclick = async () => {
+    deleteFragmentById(user, deleteFragId.value);
+    deleteInfo.innerHTML =
+      "Fragment with ID: " + deleteFragId.value + " has been deleted";
+  };
+
+  putFragmentBtn.onclick = async () => {
+    putFragment(
+      user,
+      putID.value,
+      updateType.options[updateType.selectedIndex].value,
+      putContent.value
+    );
+    updateInfo.innerHTML =
+      "Fragment with ID: " + putID.value + " has been updated";
   };
 
   // Do an authenticated request to the fragments API server and log the result

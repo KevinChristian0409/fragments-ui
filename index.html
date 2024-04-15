@@ -21,6 +21,8 @@
       <h4>Create a new Fragment</h4>
       <p>Enter the text below to create a new fragment</p>
       <input type="input" id="text-input-title" name="Fragment" /><br /><br />
+      <label for="image" id="image" name="image">Upload the Image Here:</label>
+      <input type="file" id="image" name="image" /> <br /><br />
       <label>Select the Type of Fragment:</label>
       <select id="Type">
         <option value="text/plain">text/plain</option>
@@ -30,10 +32,97 @@
         <option value="text/markdown">text/markdown</option>
         <option value="text/html">text/html</option>
         <option value="application/json">application/json</option>
+        <option value="image/png">image/png</option>
+        <option value="image/jpeg">image/jpeg</option>
+        <option value="image/webp">image/webp</option>
+        <option value="image/gif">image/gif</option>
       </select>
       <br /><br />
-      <button id="create-fragment">Create Fragment</button><br />
+      <button id="create-fragment">Create</button><br />
       <span id="createInfo" name="createInfo" style="font-weight: bold"></span>
+      <br /><br />
+      <span style="font-weight: bolder; font-size: x-large"
+        >Get Data By ID</span
+      >
+      <label for="getDataByID" style="font-weight: bold">ID:</label>
+      <input type="text" id="getDataByID" name="getDataByID" /><br /><br />
+      <button id="getFragDataByID">Get Fragment Data</button>
+      <button id="getFragMeta">Get Fragment Info</button>
+      <br /><br />
+      <span style="font-weight: bolder; font-size: x-large"
+        >The Data is below:</span
+      >
+      <p id="frag_byID" name="frag_byID"></p>
+      <br /><br />
+      <span style="font-weight: bolder; font-size: x-large"
+        >Delete Fragment</span
+      >
+      <label for="id_delete" style="font-weight: bold">ID:</label>
+      <input type="text" id="id_delete" name="id_delete" /><br /><br />
+      <button id="deleteFragBtn">Delete</button> <br />
+      <span id="deleteInfo" name="deleteInfo" style="font-weight: bold"></span>
+      <br />
+      <span style="font-weight: bolder; font-size: x-large">Put Fragment</span>
+      <label for="IdUpdate" style="font-weight: bold">ID:</label>
+      <input type="text" id="IdUpdate" name="IdUpdate" /><br /><br />
+      <label for="UpdateFragData" style="font-weight: bold"
+        >Enter New Data:</label
+      >
+      <input
+        type="text"
+        id="UpdateFragData"
+        name="UpdateFragData"
+      /><br /><br />
+      <label>Select the Type of Fragment:</label>
+      <select id="updateType">
+        <option value="text/plain">text/plain</option>
+        <option value="text/plain; charset=utf-8">
+          text/plain; charset=utf-8
+        </option>
+        <option value="text/markdown">text/markdown</option>
+        <option value="text/html">text/html</option>
+        <option value="application/json">application/json</option>
+        <option value="image/png">image/png</option>
+        <option value="image/jpeg">image/jpeg</option>
+        <option value="image/webp">image/webp</option>
+        <option value="image/gif">image/gif</option>
+      </select>
+      <br /><br />
+      <button id="updateDataBtn">Update the Fragment Data</button> <br />
+      <span id="updateInfo" name="updateInfo" style="font-weight: bold"></span>
+      <br />
+      <section id="checkOldFragment">
+        <h2>View existing fragments</h2>
+        <button id="checkOldFragmentBtn">Get</button>
+        <br /><br />
+        <span id="existFrag"></span>
+      </section>
+      <section id="convertType">
+        <h2>Convert your fragment media type by id</h2>
+        <label for="fragmentId">Enter your fragment id:</label>
+        <input type="text" id="convert_fragmentId" name="fragmentId" />
+        <br />
+        <div class="convert_type">
+          <label for="convert_option">Select the convert media type:</label>
+          <select name="convert_option" id="convert_option">
+            <option value="txt">text/plain</option>
+            <option value="csv">text/plain; charset=utf-8</option>
+            <option value="md">text/markdown</option>
+            <option value="html">text/html</option>
+            <option value="json">application/json</option>
+            <option value="png">image/png</option>
+            <option value="jpeg">image/jpeg</option>
+            <option value="webp">image/webp</option>
+            <option value="gif">image/gif</option>
+          </select>
+        </div>
+        <br />
+        <div class="convert_btn">
+          <button name="convertbtn" id="convertbtn">Convert</button>
+        </div>
+        <span id="convertFrag"></span>
+        <br /><br />
+      </section>
     </section>
   </body>
 </html>
